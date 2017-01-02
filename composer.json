@@ -1,0 +1,24 @@
+{
+  "minimum-stability": "dev",
+  "config": {
+    "vendor-dir": ".vendor"
+  },
+  "require": {
+    "wikimedia/composer-merge-plugin": "dev-master"
+  },
+  "extra": {
+    "merge-plugin": {
+      "include": [
+        "composer.custom.json"
+      ],
+      "replace": false
+    }
+  },
+  "require-dev": {
+    "testdrupal/behatextension": "dev-master",
+    "drush/drush": "8.1.0",
+    "squizlabs/php_codesniffer": "2.5.1",
+    "drupal/coder": "8.2.5",
+    "behat/behat": "3.0.15"
+  }
+}
