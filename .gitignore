@@ -45,3 +45,4 @@ docs/*.pdf
 # Drupal VM
 default.config.yml
 .vagrant
+provisioning/playbook.retry
