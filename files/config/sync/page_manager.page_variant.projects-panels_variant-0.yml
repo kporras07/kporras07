@@ -1,0 +1,28 @@
+uuid: 9ae07550-c3d5-4129-8647-bdd8f7807191
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.projects
+  module:
+    - panels
+id: projects-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks: {  }
+  id: panels_variant
+  uuid: bfa866b2-00f7-4c61-931f-69a2021761e1
+  label: null
+  weight: 0
+  layout: onecol
+  layout_settings: {  }
+  page_title: Projects
+  storage_type: page_manager
+  storage_id: projects-panels_variant-0
+  builder: standard
+page: projects
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

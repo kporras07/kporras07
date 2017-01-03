@@ -1,0 +1,28 @@
+uuid: 9d61ea4b-eb67-4026-8326-0e497a3a7bca
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.about_me
+  module:
+    - panels
+id: about_me-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks: {  }
+  id: panels_variant
+  uuid: e2d21091-a2f3-4091-ad70-57aeaf3f841f
+  label: null
+  weight: 0
+  layout: onecol
+  layout_settings: {  }
+  page_title: About
+  storage_type: page_manager
+  storage_id: about_me-panels_variant-0
+  builder: standard
+page: about_me
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

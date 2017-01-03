@@ -1,0 +1,28 @@
+uuid: 39a07597-ae02-4344-835d-100a4fae9788
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.blog
+  module:
+    - panels
+id: blog-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks: {  }
+  id: panels_variant
+  uuid: c7db35c2-e21c-4121-94f5-75304eb26b2f
+  label: null
+  weight: 0
+  layout: onecol
+  layout_settings: {  }
+  page_title: Blog
+  storage_type: page_manager
+  storage_id: blog-panels_variant-0
+  builder: standard
+page: blog
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

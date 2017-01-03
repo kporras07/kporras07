@@ -1,11 +1,11 @@
 uuid: 16219eb2-a290-46ad-a8ab-fb8e34672ae7
-name: Site-Install
-mail: admin@example.com
+name: Kporras07
+mail: kporras07@gmail.com
 slogan: ''
 page:
   403: ''
   404: ''
-  front: /node
+  front: /about
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en

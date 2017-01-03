@@ -1,0 +1,12 @@
+uuid: 787798ab-278d-4de9-bf6c-f86975b3a896
+langcode: en
+status: true
+dependencies: {  }
+id: resume
+label: Resume
+description: ''
+use_admin_theme: false
+path: /resume
+access_logic: and
+access_conditions: {  }
+parameters: {  }
