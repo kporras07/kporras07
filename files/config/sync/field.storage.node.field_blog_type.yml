@@ -1,0 +1,27 @@
+uuid: 4a1b1bfd-ca6f-4029-884d-3e155ba93ead
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_blog_type
+field_name: field_blog_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: tech
+      label: Technical
+    -
+      value: personal
+      label: Personal
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

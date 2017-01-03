@@ -1,0 +1,42 @@
+uuid: 72d96345-b816-4ef2-a376-83f74452d6be
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.project.body
+    - field.field.node.project.field_hero_image
+    - field.field.node.project.field_tags
+    - node.type.project
+  module:
+    - image
+    - text
+    - user
+id: node.project.default
+targetEntityType: node
+bundle: project
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_hero_image:
+    weight: 102
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_tags:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  links:
+    weight: 100
+hidden: {  }

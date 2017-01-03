@@ -1,0 +1,75 @@
+uuid: 63e49f5b-fa7d-42aa-908b-b4b294770dc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.project.body
+    - field.field.node.project.field_hero_image
+    - field.field.node.project.field_tags
+    - image.style.thumbnail
+    - node.type.project
+  module:
+    - image
+    - path
+    - text
+id: node.project.default
+targetEntityType: node
+bundle: project
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+  field_hero_image:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_tags:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  path:
+    type: path
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 5
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  promote: true
