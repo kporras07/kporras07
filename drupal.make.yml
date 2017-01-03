@@ -22,6 +22,8 @@ projects:
     version: 1.2
   ctools:
     version: 3.0-alpha27
+  devel:
+    version: 1.0-beta1
   layout_plugin:
     version: 1.0-alpha23
   page_manager:
