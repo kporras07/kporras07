@@ -16,15 +16,23 @@ projects:
       branch: "master"
 
   # Projects.
+  admin_toolbar:
+    version: 1.18
   config_update:
-    version: ~
-  features:
-    version: ~
-  field_group:
-    version: ~
+    version: 1.2
+  ctools:
+    version: 3.0-alpha27
+  layout_plugin:
+    version: 1.0-alpha23
+  page_manager:
+    version: 1.0-alpha24
   panels:
-    version: ~
+    version: 3.0-beta5
   pathauto:
-    version: ~
+    version: 1.0-beta1
   token:
-    version: ~
+    version: 1.0-rc1
+
+  bootstrap:
+    version: 3.1
+    type: "theme"
