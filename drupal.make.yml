@@ -28,6 +28,10 @@ projects:
     version: 1.0-alpha23
   page_manager:
     version: 1.0-alpha24
+    patch:
+      # https://www.drupal.org/node/2634276
+      - https://www.drupal.org/files/issues/2634276-pm-19.patch
+
   panels:
     version: 3.0-beta5
   pathauto:
