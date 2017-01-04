@@ -41,7 +41,7 @@ content:
     label: hidden
     settings:
       image_style: hero_image
-      image_link: ''
+      image_link: content
     third_party_settings: {  }
   field_tags:
     type: entity_reference_label
