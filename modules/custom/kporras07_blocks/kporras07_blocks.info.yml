@@ -1,0 +1,7 @@
+name: Kporras07 Blocks
+description: Some blocks necessary for this site.
+core: 8.x
+package: Custom
+dependencies:
+  - block
+type: module

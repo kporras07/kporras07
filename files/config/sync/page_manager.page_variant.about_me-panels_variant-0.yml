@@ -5,7 +5,7 @@ dependencies:
   config:
     - page_manager.page.about_me
   content:
-    - 'block_content:basic:4889ff73-73c2-489d-9773-cb74f9dbfc3c'
+    - 'block_content:basic:63b2b79d-97b6-482e-bb19-e4df520cde13'
     - 'block_content:contact_block:c58db9a3-c60d-4399-a3a1-031e501ddf46'
   module:
     - block_content
@@ -15,18 +15,6 @@ label: Panels
 variant: panels_variant
 variant_settings:
   blocks:
-    63b2b79d-97b6-482e-bb19-e4df520cde13:
-      id: 'block_content:4889ff73-73c2-489d-9773-cb74f9dbfc3c'
-      label: 'About Me Block'
-      provider: block_content
-      label_display: '0'
-      status: true
-      info: ''
-      view_mode: full
-      region: middle
-      weight: 0
-      uuid: 63b2b79d-97b6-482e-bb19-e4df520cde13
-      context_mapping: {  }
     7e6b3401-b94a-44f8-ab20-4d069c74d12b:
       id: 'block_content:c58db9a3-c60d-4399-a3a1-031e501ddf46'
       label: 'Contact Me Block'
@@ -38,6 +26,18 @@ variant_settings:
       region: middle
       weight: 0
       uuid: 7e6b3401-b94a-44f8-ab20-4d069c74d12b
+      context_mapping: {  }
+    5cd2a331-a468-45f6-b0be-c97737a68698:
+      id: 'block_content:63b2b79d-97b6-482e-bb19-e4df520cde13'
+      label: 'About Me Block'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: middle
+      weight: 0
+      uuid: 5cd2a331-a468-45f6-b0be-c97737a68698
       context_mapping: {  }
   id: panels_variant
   uuid: e2d21091-a2f3-4091-ad70-57aeaf3f841f

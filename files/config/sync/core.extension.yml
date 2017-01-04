@@ -27,6 +27,7 @@ module:
   help: 0
   history: 0
   image: 0
+  kporras07_blocks: 0
   layout_plugin: 0
   link: 0
   menu_ui: 0

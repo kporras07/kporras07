@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * Install file for kporras07_blocks.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function kporras07_blocks_install() {
+  // Get entity manager.
+  $block_entity_manager = \Drupal::service('entity.manager')->getStorage('block_content');
+  // About Me Block.
+  $block = $block_entity_manager->create(array(
+    'type' => 'basic',
+    'id' => 'block_content:basic:63b2b79d-97b6-482e-bb19-e4df520cde13',
+    'label' => 'About Me Block',
+    'uuid' => '63b2b79d-97b6-482e-bb19-e4df520cde13',
+  ));
+  $block->info = 'About Me Block';
+  $block->body->format = 'basic_html';
+  $block->body->value = "I'm a Drupal backend developer and DevOps passionate. My job title says I'm Director of Technology at Manati; but I consider myself as software enthusiast; I love to play with new technologies and try to get the most of them.";
+  $block->save();
+
+  // Contact Block.
+  $block = $block_entity_manager->create(array(
+    'type' => 'contact_block',
+    'id' => 'block_content:contact_block:c58db9a3-c60d-4399-a3a1-031e501ddf46',
+    'label' => 'Contact Block',
+    'uuid' => 'c58db9a3-c60d-4399-a3a1-031e501ddf46',
+  ));
+  $block->info = 'Contact Block';
+
+  $block->body->format = 'basic_html';
+  $block->body->value = 'You can contact me via these different ways:';
+
+  $block->field_contact_link = array();
+
+  // Mailto link.
+  $mailto_link = array(
+    'uri' => 'mailto:kporras07@gmail.com',
+    'title' => 'Email',
+  );
+  $block->field_contact_link[] = $mailto_link;
+
+  // Twitter link.
+  $twitter_link = array(
+    'uri' => 'https://twitter.com/kporras07',
+    'title' => 'Twitter',
+  );
+  $block->field_contact_link[] = $twitter_link;
+
+  // Github link.
+  $github_link = array(
+    'uri' => 'https://github.com/kporras07',
+    'title' => 'Github',
+  );
+  $block->field_contact_link[] = $github_link;
+
+  // Drupal link.
+  $drupal_link = array(
+    'uri' => 'https://drupal.org/u/kporras07',
+    'title' => 'Drupal',
+  );
+  $block->field_contact_link[] = $drupal_link;
+
+  $block->save();
+}
