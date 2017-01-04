@@ -4,13 +4,26 @@ status: true
 dependencies:
   config:
     - page_manager.page.blog
+    - views.view.blog
   module:
     - panels
+    - views
 id: blog-panels_variant-0
 label: Panels
 variant: panels_variant
 variant_settings:
-  blocks: {  }
+  blocks:
+    a8f56833-1c3b-4928-8e73-1b197a2aa567:
+      id: 'views_block:blog-block_1'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: middle
+      weight: 0
+      uuid: a8f56833-1c3b-4928-8e73-1b197a2aa567
+      context_mapping: {  }
   id: panels_variant
   uuid: c7db35c2-e21c-4121-94f5-75304eb26b2f
   label: null

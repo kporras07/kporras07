@@ -4,13 +4,26 @@ status: true
 dependencies:
   config:
     - page_manager.page.projects
+    - views.view.projects
   module:
     - panels
+    - views
 id: projects-panels_variant-0
 label: Panels
 variant: panels_variant
 variant_settings:
-  blocks: {  }
+  blocks:
+    ef00806d-89d8-4c1b-9d23-84b9877ad7ab:
+      id: 'views_block:projects-block_1'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: middle
+      weight: 0
+      uuid: ef00806d-89d8-4c1b-9d23-84b9877ad7ab
+      context_mapping: {  }
   id: panels_variant
   uuid: bfa866b2-00f7-4c61-931f-69a2021761e1
   label: null
