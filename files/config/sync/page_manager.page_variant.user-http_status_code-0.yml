@@ -1,0 +1,29 @@
+uuid: a58a9585-6d2e-41ab-906f-91b5d0ef0e15
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.user
+  module:
+    - user
+id: user-http_status_code-0
+label: 'HTTP status code'
+variant: http_status_code
+variant_settings:
+  id: http_status_code
+  uuid: 4cb7c183-b339-462e-adba-1da792e1e31d
+  label: null
+  weight: 0
+  status_code: 404
+page: user
+weight: 0
+selection_criteria:
+  -
+    id: user_role
+    roles:
+      administrator: administrator
+    negate: true
+    context_mapping:
+      user: current_user
+selection_logic: and
+static_context: {  }
