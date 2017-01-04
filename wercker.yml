@@ -99,10 +99,10 @@ deploy:
     - script:
         name: Deploy code to pantheon
         code: |
-            npm install -g aquifer aquifer-git
+            ./node_modules/.bin/aquifer extensions-load
             echo 'Ensure we are on git mode'
             terminus site set-connection-mode --site=kporras07 --env=dev --mode=git
-            aquifer deploy-git -m "Auto deploy triggered from $WERCKER_GIT_BRANCH branch"
+            ./node_modules/.bin/aquifer deploy-git -m "Auto deploy triggered from $WERCKER_GIT_BRANCH branch"
     - script:
         name: Deploy steps to pantheon dev
         code: |
