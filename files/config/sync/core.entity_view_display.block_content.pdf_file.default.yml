@@ -1,0 +1,32 @@
+uuid: b5cdfb8d-4f44-427d-8e71-bde624dc0687
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.pdf_file
+    - field.field.block_content.pdf_file.body
+    - field.field.block_content.pdf_file.field_pdf
+  module:
+    - pdf
+    - text
+id: block_content.pdf_file.default
+targetEntityType: block_content
+bundle: pdf_file
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  field_pdf:
+    weight: 1
+    label: hidden
+    settings:
+      keep_pdfjs: '1'
+      width: 100%
+      height: 1250px
+    third_party_settings: {  }
+    type: pdf_default
+hidden: {  }

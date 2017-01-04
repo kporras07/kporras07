@@ -1,0 +1,8 @@
+uuid: 69b6b5b2-a507-4801-859d-066415cac9c7
+langcode: en
+status: true
+dependencies: {  }
+id: pdf_file
+label: 'PDF File'
+revision: 0
+description: 'PDF File to download'

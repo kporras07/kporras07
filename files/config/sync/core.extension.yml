@@ -29,6 +29,7 @@ module:
   image: 0
   kporras07_blocks: 0
   layout_plugin: 0
+  libraries: 0
   link: 0
   menu_ui: 0
   node: 0
@@ -38,6 +39,7 @@ module:
   page_manager_ui: 0
   panels: 0
   path: 0
+  pdf: 0
   quickedit: 0
   rdf: 0
   search: 0

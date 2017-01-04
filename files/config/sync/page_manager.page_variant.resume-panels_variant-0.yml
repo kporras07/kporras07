@@ -4,13 +4,28 @@ status: true
 dependencies:
   config:
     - page_manager.page.resume
+  content:
+    - 'block_content:pdf_file:62ed73ec-4b75-4d7f-8dd4-bbe9ca789d01'
   module:
+    - block_content
     - panels
 id: resume-panels_variant-0
 label: Panels
 variant: panels_variant
 variant_settings:
-  blocks: {  }
+  blocks:
+    e0ffb144-80a6-405f-8eb3-2e0f8c845b70:
+      id: 'block_content:62ed73ec-4b75-4d7f-8dd4-bbe9ca789d01'
+      label: Resume
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: middle
+      weight: 0
+      uuid: e0ffb144-80a6-405f-8eb3-2e0f8c845b70
+      context_mapping: {  }
   id: panels_variant
   uuid: c1c3f111-4642-4844-a2da-5cef9578d3a4
   label: null
