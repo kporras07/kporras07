@@ -66,4 +66,28 @@ function kporras07_blocks_install() {
   $block->field_contact_link[] = $drupal_link;
 
   $block->save();
+
+  // Resume Block.
+  $block = $block_entity_manager->create(array(
+    'type' => 'pdf_file',
+    'id' => 'block_content:pdf_file:62ed73ec-4b75-4d7f-8dd4-bbe9ca789d01',
+    'label' => 'Resume Block',
+    'uuid' => '62ed73ec-4b75-4d7f-8dd4-bbe9ca789d01',
+  ));
+  $block->info = 'Resume Block';
+
+  $block->body->format = 'basic_html';
+  $block->body->value = 'You can see my resume here:';
+
+  // Create file object from a locally copied file.
+  $uri  = file_unmanaged_copy(drupal_get_path('module', 'kporras07_blocks') . '/files/resume.pdf', 'public://resume.pdf', FILE_EXISTS_REPLACE);
+  $file = \Drupal\file\Entity\File::Create([
+    'uri' => $uri,
+  ]);
+  $file->save();
+
+  $block->field_pdf = array(
+    'target_id' => $file->id(),
+  );
+  $block->save();
 }
