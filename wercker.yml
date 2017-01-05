@@ -90,6 +90,8 @@ deploy:
             ssh-add /tmp/tmp.*
             composer install --prefer-source --no-interaction
             npm install
+            echo 'Host *' >> /root/.ssh/config
+            echo '   StrictHostKeyChecking no' >> /root/.ssh/config
     - script:
         name: Install Pantheon CLI
         code: |
@@ -105,8 +107,6 @@ deploy:
     - script:
         name: Deploy steps to pantheon dev
         code: |
-            echo 'Host *' >> /root/.ssh/config
-            echo '   StrictHostKeyChecking no' >> /root/.ssh/config
             mkdir -p ~/.drush
             cp ./wercker/policy.drush.inc ~/.drush/
             drush cc drush
