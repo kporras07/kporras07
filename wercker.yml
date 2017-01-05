@@ -9,6 +9,8 @@ build:
     - script:
         name: Setup Global Stuff
         code: |
+            ssh -vT git@github.com || true
+            ./node_modules/.bin/aquifer extensions-load
             cp ./wercker/kporras07.aliases.drushrc.php ~/.drush
             # Drupal settings.
             cp ./wercker/wercker.settings.secret.php ./settings/settings.secret.php
@@ -100,6 +102,7 @@ deploy:
     - script:
         name: Deploy code to pantheon
         code: |
+            ssh -vT git@github.com || true
             echo 'Load aquifer extensions...'
             ./node_modules/.bin/aquifer extensions-load
             echo 'Ensure we are on git mode'

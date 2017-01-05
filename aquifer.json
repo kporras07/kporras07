@@ -58,7 +58,7 @@
   },
   "extensions": {
     "aquifer-git": {
-      "source": "git+ssh://git@github.com/kporras07/aquifer-git#f2c88ac",
+      "source": "https://github.com/kporras07/aquifer-git.git#f2c88ac",
       "remote": "ssh://codeserver.dev.6f47b465-9279-40ec-b609-7cb69eb76cb7@codeserver.dev.6f47b465-9279-40ec-b609-7cb69eb76cb7.drush.in:2222/~/repository.git",
       "branch": "master",
       "name": "Kevin Porras",
