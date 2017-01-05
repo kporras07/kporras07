@@ -1,0 +1,15 @@
+uuid: 7d03e4b1-1a1e-42db-9560-ffe2a12c5b22
+langcode: en
+status: true
+dependencies: {  }
+id: projects
+title: Projects
+route_name: page_manager.page_view_projects
+route_parameters: {  }
+options: {  }
+expanded: false
+menu_name: main
+enabled: true
+parent: ''
+weight: 2
+description: ''
