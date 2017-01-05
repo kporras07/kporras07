@@ -1,0 +1,22 @@
+uuid: efd9467d-187d-4fb6-874c-cdc4d3a464fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.contact_block
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.contact_block.body
+field_name: body
+entity_type: block_content
+bundle: contact_block
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

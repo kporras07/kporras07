@@ -5,6 +5,7 @@ core: '8.x'
 dependencies:
   - node
   - block
+  - block_content
   - breakpoint
   - config
   - page_cache
@@ -12,6 +13,9 @@ dependencies:
   - dblog
   - search
   - toolbar
+  - link
+  - file
+  - field
 themes:
   - bartik
   - seven
