@@ -93,6 +93,8 @@ deploy:
             npm install
             echo 'Host *' >> /root/.ssh/config
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
+            git config --global user.email "you@example.com"
+            git config --global user.name "Your Name"
     - script:
         name: Install Pantheon CLI
         code: |
