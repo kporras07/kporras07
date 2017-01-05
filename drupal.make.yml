@@ -32,6 +32,12 @@ projects:
       url: "https://git.drupal.org/project/libraries.git"
       branch: 8.x-3.x
       revision: "5e7ea584db3e5d9aa5acac130bda1359ad048f5c"
+  menu_link_config:
+    download:
+      type: "git"
+      url: "https://git.drupal.org/project/menu_link_config.git"
+      branch: 8.x-1.x
+      revision: "535353615b2488624b2eee95077f92fac0365723"
   page_manager:
     version: 1.0-alpha24
     patch:
