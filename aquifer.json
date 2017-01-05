@@ -18,6 +18,11 @@
         "method": "symlink",
         "conflict": "overwrite"
       },
+      "profiles": {
+        "destination": "profiles/custom",
+        "method": "symlink",
+        "conflict": "overwrite"
+      },
       "themes/custom": {
         "destination": "themes/custom",
         "method": "symlink",
