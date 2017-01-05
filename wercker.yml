@@ -45,7 +45,6 @@ build:
             chown -R root:www-data ./files
             ./node_modules/.bin/aquifer build
             chmod 777 -R ./build/sites/default/files
-            ./node_modules/.bin/aquifer extensions-load
             chown -R www-data:www-data ./build/sites/default/files
             # Set alias.
             drush site-set @kporras07.kporras07.dev
