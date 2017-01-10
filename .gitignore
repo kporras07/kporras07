@@ -9,6 +9,7 @@ node_modules
 # Aquifer
 .aquifer
 !.aquifer/.gitkeep
+aquifer-*
 
 # Apache HTML file.
 html/index.html
