@@ -31,7 +31,6 @@ module:
   layout_plugin: 0
   libraries: 0
   link: 0
-  menu_link_config: 0
   menu_ui: 0
   node: 0
   options: 0
