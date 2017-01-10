@@ -1,6 +1,6 @@
 standard.front_page:
   title: 'About'
-  route_name: 'page_manager.page_view_about'
+  route_name: 'page_manager.page_view_about_me'
   menu_name: main
 standard.blog:
   title: 'Blog'
