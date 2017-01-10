@@ -2,6 +2,8 @@ uuid: 0c1b0aa9-54fe-4051-8560-f14e67ccfb40
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: xbzTMuJK0x6tJreboN8VdptznlIuwDQDKOGw5YnQZ10
 id: contact_block
 label: 'Contact Block'
 revision: 0

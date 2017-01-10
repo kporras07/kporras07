@@ -7,6 +7,8 @@ dependencies:
     - field.storage.block_content.body
   module:
     - text
+_core:
+  default_config_hash: mpSDjFc8Ff7u-ovmlpMRkGJ4VIkSsZ4SnWhmmk-N90Q
 id: block_content.pdf_file.body
 field_name: body
 entity_type: block_content

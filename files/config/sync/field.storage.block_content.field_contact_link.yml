@@ -5,6 +5,8 @@ dependencies:
   module:
     - block_content
     - link
+_core:
+  default_config_hash: diln6twhv59NlMPWL022zjqhnNWUTr1Z4rxQkB6UTdU
 id: block_content.field_contact_link
 field_name: field_contact_link
 entity_type: block_content

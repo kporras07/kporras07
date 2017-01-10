@@ -2,6 +2,8 @@ uuid: 69b6b5b2-a507-4801-859d-066415cac9c7
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: 4n1XlAzjUquHl1CM975xFfKkHkL_Dqh3EtXqj5v1USA
 id: pdf_file
 label: 'PDF File'
 revision: 0
