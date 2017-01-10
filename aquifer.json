@@ -80,6 +80,10 @@
         {
           "src": "root/.htaccess",
           "dest": ".htaccess"
+        },
+        {
+          "src": "settings/settings.php",
+          "dest": "sites/default/settings.php"
         }
       ],
       "excludeLinks": ["sites/default/files"],
