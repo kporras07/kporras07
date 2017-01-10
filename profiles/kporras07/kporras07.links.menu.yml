@@ -1,0 +1,16 @@
+standard.front_page:
+  title: 'About'
+  route_name: 'page_manager.page_view_about'
+  menu_name: main
+standard.blog:
+  title: 'Blog'
+  route_name: 'page_manager.page_view_blog'
+  menu_name: main
+standard.projects:
+  title: 'Projects'
+  route_name: 'page_manager.page_view_projects'
+  menu_name: main
+standard.resume:
+  title: 'Resume'
+  route_name: 'page_manager.page_view_resume'
+  menu_name: main
