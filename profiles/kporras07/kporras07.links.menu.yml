@@ -1,16 +1,16 @@
-standard.front_page:
+kporras07.about_me:
   title: 'About'
   route_name: 'page_manager.page_view_about_me'
   menu_name: main
-standard.blog:
+kporras07.blog:
   title: 'Blog'
   route_name: 'page_manager.page_view_blog'
   menu_name: main
-standard.projects:
+kporras07.projects:
   title: 'Projects'
   route_name: 'page_manager.page_view_projects'
   menu_name: main
-standard.resume:
+kporras07.resume:
   title: 'Resume'
   route_name: 'page_manager.page_view_resume'
   menu_name: main
