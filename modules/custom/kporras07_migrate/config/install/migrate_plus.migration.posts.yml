@@ -1,0 +1,27 @@
+id: posts
+label: Posts
+migration_group: kporras07
+source:
+  plugin: posts
+process:
+  title: title
+  body/value: body
+  field_category: categories
+  field_tags: tags
+  field_blog_type: type
+  created: date
+  changed: date
+  type:
+    plugin: default_value
+    default_value: blog
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  sticky:
+    plugin: default_value
+    default_value: 0
+destination:
+  plugin: entity:node
