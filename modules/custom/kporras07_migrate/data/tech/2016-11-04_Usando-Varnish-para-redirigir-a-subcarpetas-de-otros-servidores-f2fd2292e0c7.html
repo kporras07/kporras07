@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Usando Varnish para redirigir a subcarpetas de otros servidores</title><meta name="description" content="Imaginá que tenés un servidor web con el contenido principal de tu sitio (para nuestros efectos example.com); pero hay un subsitio aparte…"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Usando Varnish para redirigir a subcarpetas de otros servidores</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Imaginá que tenés un servidor web con el contenido principal de tu sitio (para nuestros efectos example.com); pero hay un subsitio aparte…
+</section>
+<section data-field="body" class="e-content">
+<section name="3a5f" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><figure name="824c" id="824c" class="graf graf--figure graf--leading"><div class="aspectRatioPlaceholder is-locked" style="max-width: 502px; max-height: 351px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 69.89999999999999%;"></div><img class="graf-image" data-image-id="1*U0zgFGv3gMHOYcKzzVL0QQ.png" data-width="502" data-height="351" src="https://cdn-images-1.medium.com/max/800/1*U0zgFGv3gMHOYcKzzVL0QQ.png"></div><figcaption class="imageCaption">Guru Meditation (?)</figcaption></figure><h3 name="2ad1" id="2ad1" class="graf graf--h3 graf-after--figure graf--title">Usando Varnish para redirigir a subcarpetas de otros servidores</h3><p name="1661" id="1661" class="graf graf--p graf-after--h3">Imaginá que tenés un servidor web con el contenido principal de tu sitio (para nuestros efectos <em class="markup--em markup--p-em">example.com</em>); pero hay un subsitio aparte alojado en un servidor web diferente (<em class="markup--em markup--p-em">different.com/checkthis</em>) y queremos que todo lo que esté dentro de la carpeta <em class="markup--em markup--p-em">checkthis</em> sea servido dentro de example.com (ej. <em class="markup--em markup--p-em">example.com/checkthis/index.html</em>).</p><p name="0e42" id="0e42" class="graf graf--p graf-after--p">Como example.com es un sitio un poco pesado, le pusimos un varnish al frente para agilizar la carga para los usuarios finales no autenticados; entonces, utilizaremos ese mismo varnish para realizar la redirección necesaria.</p><p name="3e0e" id="3e0e" class="graf graf--p graf-after--p">Para nuestros efectos, nuestro archivo de configuración inicial del varnish tiene estas líneas (entre algunas otras):</p><pre name="3508" id="3508" class="graf graf--pre graf-after--p">backend default {<br>    .host = &quot;172.16.1.5&quot;;<br>    .port = &quot;80&quot;<br>}</pre><pre name="0d42" id="0d42" class="graf graf--pre graf-after--pre">sub vcl_recv {<br>    set req.backend_hint = default;<br>}</pre><p name="b7fe" id="b7fe" class="graf graf--p graf-after--pre">Para lograr nuestro objetivo, debemos definir otro backend y luego una serie de condiciones para redirigir las peticiones a ese nuevo backend; para agregarlo, escribimos algo como lo siguiente:</p><pre name="506f" id="506f" class="graf graf--pre graf-after--p">backend checkthis {<br>    .host = &quot;172.16.1.6&quot;;<br>    .port = &quot;80&quot;;<br>}</pre><p name="b1de" id="b1de" class="graf graf--p graf-after--pre">Y luego, para que se utilice nuestro nuevo backend, modificamos la rutina vcl_recv para que quede así:</p><pre name="248d" id="248d" class="graf graf--pre graf-after--p">sub vcl_recv {<br>    if (req.url ~ &quot;^checkthis&quot; ||<br>        req.url ~ &quot;^checkthis/&quot;) {<br>        set.req.backend_hint = checkthis;<br>    }<br>    else {<br>        set req.backend_hint = default;<br>    }<br>}</pre><p name="0489" id="0489" class="graf graf--p graf-after--pre">Y listo, con sólo reiniciar o recargar el varnish y nuestra nueva funcionalidad queda activada.</p><p name="721e" id="721e" class="graf graf--p graf-after--p graf--last">Ojalá esta pequeña entrada le pueda ser útil a alguien :D</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@kporras07" class="p-author h-card">Kevin Porras</a> on <a href="https://medium.com/p/f2fd2292e0c7"><time class="dt-published" datetime="2016-11-04T19:39:20.018Z">November 4, 2016</time></a>.</p><p>Exported from <a href="https://medium.com">Medium</a> on January 11, 2017.</p></footer></article>
+
+</body></html>

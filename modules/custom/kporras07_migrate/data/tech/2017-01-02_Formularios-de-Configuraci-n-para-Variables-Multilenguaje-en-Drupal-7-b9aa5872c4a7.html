@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Formularios de Configuración para Variables Multilenguaje en Drupal 7</title><meta name="description" content="Hace poco tuve la necesidad de crear un formulario de configuración de Drupal que guardara variables multilenguaje y encontré que la mejor…"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Formularios de Configuración para Variables Multilenguaje en Drupal 7</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Hace poco tuve la necesidad de crear un formulario de configuración de Drupal que guardara variables multilenguaje y encontré que la mejor…
+</section>
+<section data-field="body" class="e-content">
+<section name="c9eb" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="993a" id="993a" class="graf graf--h3 graf--leading graf--title">Formularios de Configuración para Variables Multilenguaje en Drupal 7</h3><p name="c9a6" id="c9a6" class="graf graf--p graf-after--h3">Hace poco tuve la necesidad de crear un formulario de configuración de Drupal que guardara variables multilenguaje y encontré que la mejor forma de hacerlo es utilizando el módulo <a href="https://www.drupal.org/project/variable" data-href="https://www.drupal.org/project/variable" class="markup--anchor markup--p-anchor" target="_blank">variable</a> junto con 18n_variable (parte de <a href="https://www.drupal.org/project/i18n" data-href="https://www.drupal.org/project/i18n" class="markup--anchor markup--p-anchor" target="_blank">i18n</a>).</p><p name="8124" id="8124" class="graf graf--p graf-after--p">Lo primero que necesitamos es definir un grupo de variables; para ello implementamos <code class="markup--code markup--p-code">hook_variable_group_info</code> de la siguiente forma:</p><pre name="3d62" id="3d62" class="graf graf--pre graf-after--p">/**<br> * Implements hook_variable_group_info().<br> */<br>function example_variable_group_info() {<br>  $groups[&#39;example_group&#39;] = array(<br>    &#39;title&#39; =&gt; t(&#39;Example Group&#39;),<br>    &#39;description&#39; =&gt; t(&#39;Example group variables&#39;),<br>    &#39;access&#39; =&gt; &#39;administer site configuration&#39;,<br>    &#39;path&#39; =&gt; &#39;admin/config/example&#39;,<br>  );</pre><pre name="cf4f" id="cf4f" class="graf graf--pre graf-after--pre">  return $groups;<br>}</pre><p name="ae6f" id="ae6f" class="graf graf--p graf-after--pre">Una vez declarado nuestro grupo necesitamos declarar las variables pertenecientes a ese grupo; para efectos de nuestro ejemplo declararemos solamente dos; para ello, implementamos <code class="markup--code markup--p-code">hook_variable_info</code> de la siguiente forma:</p><pre name="da7b" id="da7b" class="graf graf--pre graf-after--p">/**<br> * Implements hook_variable_info().<br> */<br>function example_variable_info($options) {<br>  $variables[&#39;example_var1&#39;] = array(<br>    &#39;type&#39; =&gt; &#39;string&#39;,<br>    &#39;title&#39; =&gt; t(&#39;Example Var 1&#39;),<br>    &#39;description&#39; =&gt; t(&#39;Example Var 1&#39;, array(), $options),<br>    &#39;default&#39; =&gt; t(&#39;Example Var 1 default text&#39;, array(), $options),<br>    &#39;localize&#39; =&gt; TRUE,<br>    &#39;group&#39; =&gt; &#39;example_group&#39;,<br>  );</pre><pre name="31d0" id="31d0" class="graf graf--pre graf-after--pre">  $variables[&#39;example_var2&#39;] = array(<br>    &#39;type&#39; =&gt; &#39;text_format&#39;,<br>    &#39;title&#39; =&gt; t(&#39;Example Var 2&#39;),<br>    &#39;description&#39; =&gt; t(&#39;Example Var 2&#39;, array(), $options),<br>    &#39;default&#39; =&gt; t(&#39;Example Var 2 default text&#39;, array(), $options),<br>    &#39;localize&#39; =&gt; TRUE,<br>    &#39;group&#39; =&gt; &#39;example_group&#39;,<br>  );</pre><pre name="786d" id="786d" class="graf graf--pre graf-after--pre">  return $variables;<br>}</pre><p name="283a" id="283a" class="graf graf--p graf-after--pre">Luego, declaramos el elemento de menú donde vamos a mostrar nuestro formulario de configuración para las variables antes declaradas.</p><pre name="808d" id="808d" class="graf graf--pre graf-after--p">/**<br> * Implements hook_menu().<br> */<br>function example_menu() {<br>  $items[&#39;admin/config/example&#39;] = array(<br>    &#39;title&#39; =&gt; &#39;Example Config&#39;,<br>    &#39;page callback&#39; =&gt; &#39;drupal_get_form&#39;,<br>    &#39;page arguments&#39; =&gt; array(&#39;variable_group_form&#39;, &#39;example_group&#39;),<br>    &#39;access arguments&#39; =&gt; array(&#39;administer site configuration&#39;),<br>    &#39;type&#39; =&gt; MENU_NORMAL_ITEM,<br>  );</pre><pre name="a10f" id="a10f" class="graf graf--pre graf-after--pre">  return $items;<br>}</pre><p name="c14a" id="c14a" class="graf graf--p graf-after--pre">Ahora, deberíamos poder ver en la ruta antes mencionada (admin/config/example); sin embargo, dichas variables aún no son multilenguaje; aún tenemos que habilitarles el multilenguaje a cada una de ellas; para ello, vamos a admin/config/regional/i18n/variable y habilitamos cada una de nuestras variables para ser multilenguaje. A partir de ahora, cuando vayamos a admin/config/example tendremos la opción de editar el valor para dichas variables en cada uno de los idiomas activos en nuestro sitio.</p><p name="cff7" id="cff7" class="graf graf--p graf-after--p graf--last">Espero que sea útil.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@kporras07" class="p-author h-card">Kevin Porras</a> on <a href="https://medium.com/p/b9aa5872c4a7"><time class="dt-published" datetime="2017-01-02T18:32:26.639Z">January 2, 2017</time></a>.</p><p>Exported from <a href="https://medium.com">Medium</a> on January 11, 2017.</p></footer></article>
+
+</body></html>

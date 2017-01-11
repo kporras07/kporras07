@@ -1,0 +1,7 @@
+name: Kporras07 Migrate
+description: Migrate utilities for kporras07 site.
+core: 8.x
+package: Custom
+dependencies:
+  - migrate
+type: module

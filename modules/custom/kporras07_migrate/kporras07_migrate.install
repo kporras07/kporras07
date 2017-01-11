@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Install file for kporras07_migrate.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function kporras07_migrate_schema() {
+  $schema['kporras07_posts'] = array(
+    'description' => 'Intermediate table for migrating posts',
+    'fields' => array(
+      'id' => array(
+        'description' => 'ID (derived from filename)',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'file' => array(
+        'description' => 'File',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'title' => array(
+        'description' => 'Post Title',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'date' => array(
+        'description' => 'Date',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'type' => array(
+        'description' => 'Blog Type',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'categories' => array(
+        'description' => 'Categories',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'tags' => array(
+        'description' => 'Tags',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'permalink' => array(
+        'description' => 'Permalink',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'body' => array(
+        'description' => 'Body',
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+
+  return $schema;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Sobreescribir template de Drupal desde un módulo</title><meta name="description" content="En una situación normal, para sobreescribir un template de Drupal, lo copio con el nombre correcto en la carpeta de templates del tema…"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Sobreescribir template de Drupal desde un módulo</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+En una situación normal, para sobreescribir un template de Drupal, lo copio con el nombre correcto en la carpeta de templates del tema…
+</section>
+<section data-field="body" class="e-content">
+<section name="9960" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="04b8" id="04b8" class="graf graf--h3 graf--leading graf--title">Sobreescribir template de Drupal desde un módulo</h3><p name="20f0" id="20f0" class="graf graf--p graf-after--h3">En una situación normal, para sobreescribir un template de Drupal, lo copio con el nombre correcto en la carpeta de templates del tema. Pero hay situaciones en las que no tenemos acceso al tema (tal vez un módulo contrib o sólo tenemos acceso a los módulos) y tenemos que realizar este sobreescritura desde un módulo. Drupal <em class="markup--em markup--p-em">por default</em> no lee templates desde los módulos, pero podemos cambiar ese comportamiento de forma muy sencilla con sólo implementar el <em class="markup--em markup--p-em">hook_theme_registry_alter</em>. Ejemplo:</p><pre name="7e9a" id="7e9a" class="graf graf--pre graf-after--p">/**<br> * Implements hook_theme_registry_alter().<br> */<br>function demo_theme_registry_alter(&amp;$theme_registry) {<br>  // Defined path to the current module.<br>  $templates_path = drupal_get_path(&#39;module&#39;, &#39;demo&#39;) . &#39;/templates&#39;;<br>  // Find all .tpl.php files in this module&#39;s folder recursively.<br>  $template_file_objects = drupal_find_theme_templates($theme_registry, &#39;.tpl.php&#39;, $templates_path);<br>  // Iterate through all found template file objects.<br>  foreach ($template_file_objects as $key =&gt; $template_file_object) {<br>    // If the template has not already been overridden by a theme.<br>    if (!isset($theme_registry[$key][&#39;theme path&#39;]) || !preg_match(&#39;#/themes/#&#39;, $theme_registry[$key][&#39;theme path&#39;])) {<br>      // Alter the theme path and template elements.<br>      $theme_registry[$key][&#39;theme path&#39;] = $templates_path;<br>      $theme_registry[$key] = array_merge($theme_registry[$key], $template_file_object);<br>      $theme_registry[$key][&#39;type&#39;] = &#39;module&#39;;<br>    }<br>  }<br>}</pre><p name="61c9" id="61c9" class="graf graf--p graf-after--pre graf--last">Con lo anterior le estamos diciendo a Drupal que busque todos los archivos .tpl.php que encuentre en la carpeta templates del módulo demo y los trate como templates que podrían usarse para sobreescribir otros. De esta forma, logramos nuestro objetivo y ya podemos poder cualquier template dentro de /templates y utilizarlo para sobreescribir otros. Ojalá les sea útil.</p></div></div></section><section name="6bf0" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="645e" id="645e" class="graf graf--p graf--leading graf--last"><em class="markup--em markup--p-em">Originally published at </em><a href="http://kporras07.tk/2016/01/15/sobreescribir-templates-desde-modulo/" data-href="http://kporras07.tk/2016/01/15/sobreescribir-templates-desde-modulo/" class="markup--anchor markup--p-anchor" target="_blank"><em class="markup--em markup--p-em">kporras07.tk</em></a><em class="markup--em markup--p-em"> on January 15, 2016.</em></p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@kporras07" class="p-author h-card">Kevin Porras</a> on <a href="https://medium.com/p/9729e43d0609"><time class="dt-published" datetime="2016-01-15T00:00:00.000Z">January 15, 2016</time></a>.</p><p>Exported from <a href="https://medium.com">Medium</a> on January 11, 2017.</p></footer></article>
+
+</body></html>
