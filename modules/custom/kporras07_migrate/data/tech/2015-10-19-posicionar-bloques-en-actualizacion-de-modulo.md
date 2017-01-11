@@ -1,4 +1,5 @@
 ---
+title: "Posicionar bloques en actualización de módulo"
 published: true
 layout: post
 date: 2015-10-19T14:42:25.000Z

@@ -1,4 +1,5 @@
 ---
+title: "Un día normal"
 published: true
 layout: post
 category: "Micronovela-2"

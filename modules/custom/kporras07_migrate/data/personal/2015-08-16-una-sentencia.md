@@ -1,4 +1,5 @@
 ---
+title: "Una Sentencia"
 published: true
 layout: post
 category: "Micronovela-3"

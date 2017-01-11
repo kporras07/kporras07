@@ -1,9 +1,5 @@
 ---
-published: false
----
-
----
-title: Primera Vista
+title: "Primera Vista"
 layout: post
 category: Poesía
 published: true

@@ -1,5 +1,5 @@
 ---
-title: Decisiones
+title: "Decisiones"
 category: Sabiduría de Vida
 published: true
 layout: post
