@@ -11,12 +11,12 @@ process:
     default_value: full_html
   field_category:
     plugin: migration
-    migration: categories
-    source: category
+    migration: kporras07_categories
+    source: categories
   field_tags:
     plugin: migration
-    migration: tags
-    source: tag
+    migration: kporras07_tags
+    source: tags
   field_blog_type: type
   created: date
   changed: date
@@ -34,6 +34,7 @@ process:
     default_value: 0
 destination:
   plugin: entity:node
-dependencies:
-  enforced:
-    - kporras07_terms
+migration_dependencies:
+  required:
+    - kporras07_categories
+    - kporras07_tags

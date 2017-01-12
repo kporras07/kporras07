@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\kporras07_migrate\Plugin\migrate\source\Kporras07Terms.
+ * Contains \Drupal\kporras07_migrate\Plugin\migrate\source\Kporras07Categories.
  */
 
 namespace Drupal\kporras07_migrate\Plugin\migrate\source;
@@ -10,13 +10,13 @@ namespace Drupal\kporras07_migrate\Plugin\migrate\source;
 use Drupal\migrate\Plugin\migrate\source\SqlBase;
 
 /**
- * Drupal 8 term from database.
+ * Drupal 8 category from database.
  *
  * @MigrateSource(
- *   id = "kporras07_terms"
+ *   id = "kporras07_categories"
  * )
  */
-class Kporras07Terms extends SqlBase {
+class Kporras07Categories extends SqlBase {
 
   /**
    * {@inheritdoc}
@@ -25,8 +25,8 @@ class Kporras07Terms extends SqlBase {
     $query = $this->select('kporras07_terms', 't')
       ->fields('t', array(
         'name',
-        'type',
-      ));
+      ))
+      ->condition('type', 'category');
     return $query;
   }
 
@@ -36,7 +36,6 @@ class Kporras07Terms extends SqlBase {
   public function fields() {
     $fields = array(
       'name' => $this->t('Name of the term'),
-      'type' => $this->t('Vocabulary of the term'),
     );
 
     return $fields;
@@ -48,10 +47,6 @@ class Kporras07Terms extends SqlBase {
   public function getIds() {
     return array(
       'name' => array(
-        'type' => 'string',
-        'alias' => 't',
-      ),
-      'type' => array(
         'type' => 'string',
         'alias' => 't',
       ),

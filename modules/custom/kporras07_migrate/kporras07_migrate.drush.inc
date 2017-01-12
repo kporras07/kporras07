@@ -135,15 +135,15 @@ function kporras07_migrate_process_md($type) {
     $contents = file_get_contents($uri);
 
     // Clean body.
+    preg_match('/\-\-\-(.*)\-\-\-/s', $contents, $matches);
+    $meta = $matches[1];
+
     $contents = preg_replace_callback('/(#{1,}) (.*)/', function ($matches) {
       $htype = strlen($matches[1]);
       return '<h' . $htype . '>' . $matches[2] . '</h' . $htype . '>';
     }, $contents);
     $contents = preg_replace('/{% highlight .*/', '<pre>', $contents);
     $contents = preg_replace('/{% endhighlight .*/', '</pre>', $contents);
-
-    preg_match('/\-\-\-(.*)\-\-\-/s', $contents, $matches);
-    $meta = $matches[1];
 
     // Remove title at beginning of body.
     $contents = preg_replace('/\-{3}(\n\n<h2>.*<\/h2>)/m', '---', $contents);
@@ -161,29 +161,27 @@ function kporras07_migrate_process_md($type) {
     $date = strtotime($date_string);
 
     // Title.
-    preg_match('/title:\s*"?([A-Za-z0-9\s\-áéíóú!?]*)"?/', $meta, $matches);
+    var_dump($meta);
+    preg_match('/^title:\s*"?([A-Za-z0-9\s\-áéíóú!#?\.\(\)\_]*)\n?"?$/m', $meta, $matches);
     $title = $matches[1];
 
     // Categories.
     preg_match('/^categories|category:\s*([A-Za-z0-9\s\-áéíóú!?]*)$/m', $meta, $matches);
-    $categories = $matches[1];
-    $categories = explode(' ', $categories);
-    foreach ($categories as &$category) {
-      if (trim($category)) {
-        $category = ucwords($category);
-        \Drupal::database()->merge('kporras07_terms')
-          ->key(array(
-            'name' => trim($category),
-            'type' => 'category',
-          ))
-          ->fields(array(
-            'type' => 'category',
-            'name' => trim($category),
-          ))
-          ->execute();
-      }
+    $category = $matches[1];
+    if (trim($category)) {
+      $category = ucwords($category);
+      \Drupal::database()->merge('kporras07_terms')
+        ->key(array(
+          'name' => trim($category),
+          'type' => 'category',
+        ))
+        ->fields(array(
+          'type' => 'category',
+          'name' => trim($category),
+        ))
+        ->execute();
     }
-    $categories = implode(',', $categories);
+    $categories = $category;
 
     // Tags.
     preg_match('/^tags:\s*([A-Za-z0-9\s\-áéíóú!?]*)$/m', $meta, $matches);
