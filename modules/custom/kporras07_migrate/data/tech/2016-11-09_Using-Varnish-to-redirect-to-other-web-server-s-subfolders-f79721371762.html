@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Using Varnish to redirect to other web server&#39;s subfolders</title><meta name="description" content="Assuming you have a web server giving the main content of your site (example.com for this post); but, there&#39;s another site hosted in a…"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Using Varnish to redirect to other web server&#39;s subfolders</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Assuming you have a web server giving the main content of your site (example.com for this post); but, there&#39;s another site hosted in a…
+</section>
+<section data-field="body" class="e-content">
+<section name="965c" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="306a" id="306a" class="graf graf--h3 graf--leading graf--title">Using Varnish to redirect to other web server&#39;s subfolders</h3><figure name="2243" id="2243" class="graf graf--figure graf-after--h3"><div class="aspectRatioPlaceholder is-locked" style="max-width: 502px; max-height: 351px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 69.89999999999999%;"></div><img class="graf-image" data-image-id="1*U0zgFGv3gMHOYcKzzVL0QQ.png" data-width="502" data-height="351" src="https://cdn-images-1.medium.com/max/800/1*U0zgFGv3gMHOYcKzzVL0QQ.png"></div><figcaption class="imageCaption">Guru Meditation (?)</figcaption></figure><p name="1110" id="1110" class="graf graf--p graf-after--figure">Assuming you have a web server giving the main content of your site (example.com for this post); but, there&#39;s another site hosted in a different web server (different.com/checkthis) and you want that everything inside checkthis folder be served inside example.com (i.e. example.com/checkthis/index.html).</p><p name="9ea6" id="9ea6" class="graf graf--p graf-after--p">Since example.com is a heavy site; there is a Varnish server in front of it to make it faster to users; so, you can use the same varnish to make the necessary redirections.</p><p name="f593" id="f593" class="graf graf--p graf-after--p">Your initial varnish config file is similar to this:</p><pre name="f0cc" id="f0cc" class="graf graf--pre graf-after--p">backend default {<br>    .host = &quot;172.16.1.5&quot;;<br>    .port = &quot;80&quot;<br>}</pre><pre name="0d42" id="0d42" class="graf graf--pre graf-after--pre">sub vcl_recv {<br>    set req.backend_hint = default;<br>}</pre><p name="3f68" id="3f68" class="graf graf--p graf-after--pre">To get your goal; you should define a new backend and then some conditions to redirect requests to the different.com site backend. You can add a backend server like this:</p><pre name="ca4e" id="ca4e" class="graf graf--pre graf-after--p">backend checkthis {<br>    .host = &quot;172.16.1.6&quot;;<br>    .port = &quot;80&quot;;<br>}</pre><p name="4afa" id="4afa" class="graf graf--p graf-after--pre">And then, to use that backend; you should edit vcl_recv function to be like this:</p><pre name="683a" id="683a" class="graf graf--pre graf-after--p">sub vcl_recv {<br>    if (req.url ~ &quot;^checkthis&quot; ||<br>        req.url ~ &quot;^checkthis/&quot;) {<br>        set.req.backend_hint = checkthis;<br>    }<br>    else {<br>        set req.backend_hint = default;<br>    }<br>}</pre><p name="54e9" id="54e9" class="graf graf--p graf-after--pre">And that&#39;s all. When you restart/reload the varnish server; your new functionality will be working as expected.</p><p name="9540" id="9540" class="graf graf--p graf-after--p graf--last">Hope it helps :D</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@kporras07" class="p-author h-card">Kevin Porras</a> on <a href="https://medium.com/p/f79721371762"><time class="dt-published" datetime="2016-11-09T21:19:27.799Z">November 9, 2016</time></a>.</p><p>Exported from <a href="https://medium.com">Medium</a> on January 11, 2017.</p></footer></article>
+
+</body></html>

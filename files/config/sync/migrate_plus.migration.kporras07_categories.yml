@@ -1,0 +1,12 @@
+id: kporras07_categories
+label: Categories
+migration_group: kporras07
+source:
+  plugin: kporras07_categories
+process:
+  name: name
+  vid:
+    plugin: default_value
+    default_value: category
+destination:
+  plugin: entity:taxonomy_term

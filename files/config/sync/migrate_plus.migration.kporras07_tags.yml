@@ -1,0 +1,12 @@
+id: kporras07_tags
+label: Tags
+migration_group: kporras07
+source:
+  plugin: kporras07_tags
+process:
+  name: name
+  vid:
+    plugin: default_value
+    default_value: tags
+destination:
+  plugin: entity:taxonomy_term

@@ -32,12 +32,15 @@ projects:
       url: "https://git.drupal.org/project/libraries.git"
       branch: 8.x-3.x
       revision: "5e7ea584db3e5d9aa5acac130bda1359ad048f5c"
+  migrate_plus:
+    version: 3.0-beta1
+  migrate_tools:
+    version: 3.0-beta1
   page_manager:
     version: 1.0-alpha24
     patch:
       # https://www.drupal.org/node/2634276
       - https://www.drupal.org/files/issues/2634276-pm-19.patch
-
   panels:
     version: 3.0-beta5
   pathauto:
@@ -60,3 +63,8 @@ libraries:
     download:
       type: "file"
       url: "https://github.com/mozilla/pdf.js/releases/download/v1.5.188/pdfjs-1.5.188-dist.zip"
+  querypath:
+    download:
+      type: "git"
+      tag: "3.0.4"
+      url: "https://github.com/technosophos/querypath.git"

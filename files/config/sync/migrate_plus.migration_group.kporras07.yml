@@ -1,0 +1,7 @@
+id: kporras07
+label: Kporras07
+description: Migrate posts.
+source_type: Intermediate table generated from posts files.
+shared_configuration:
+  source:
+    key: default

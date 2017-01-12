@@ -1,0 +1,11 @@
+name: Kporras07 Migrate
+description: Migrate utilities for kporras07 site.
+core: 8.x
+package: Custom
+type: module
+dependencies:
+  - drupal:node
+  - drupal:options
+  - drupal:taxonomy
+  - drupal:text
+  - migrate_plus:migrate_plus

@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Crear plugins de ctools (context, relationship, content type) (Parte 2/3)</title><meta name="description" content="En esta segunda entrada crearemos un relationship para proveer nuestro contexto (parte 1/3) a partir de algún valor de un nodo que ya…"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Crear plugins de ctools (context, relationship, content type) (Parte 2/3)</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+En esta segunda entrada crearemos un relationship para proveer nuestro contexto (parte 1/3) a partir de algún valor de un nodo que ya…
+</section>
+<section data-field="body" class="e-content">
+<section name="b320" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="7f57" id="7f57" class="graf graf--h3 graf--leading graf--title">Crear plugins de ctools (context, relationship, content type) (Parte 2/3)</h3><p name="fa91" id="fa91" class="graf graf--p graf-after--h3">En esta segunda entrada crearemos un relationship para proveer nuestro contexto (parte 1/3) a partir de algún valor de un nodo que ya tengamos disponible. La lógica para eso la dejaremos sin implementar, porque no es parte del alcance de este post; pero se explicará de forma detallada cómo crear la relación.</p><p name="e178" id="e178" class="graf graf--p graf-after--p">Para empezar, tenemos que declararle a ctools la ubicación de nuestros plugins de tipo relationship al igual que lo hicimos con los de tipo context; para ello, modificamos nuestro <em class="markup--em markup--p-em">hook_ctools_plugin_directory</em> para que quede así:</p><pre name="ffbe" id="ffbe" class="graf graf--pre graf-after--p">/**<br> * Implements hook_ctools_plugin_directory().<br> */<br>function ctools_demo_ctools_plugin_directory($owner, $plugin_type) {<br>  if ($owner === &#39;ctools&#39; &amp;&amp; $plugin_type === &#39;contexts&#39;) {<br>    return &#39;plugins/contexts&#39;;<br>  }<br>  if ($owner === &#39;ctools&#39; &amp;&amp; $plugin_type === &#39;relationships&#39;) {<br>    return &#39;plugins/relationships&#39;;<br>  }<br>}</pre><p name="9176" id="9176" class="graf graf--p graf-after--pre">Con lo anterior, le decimos a ctools que los plugins de tipo <em class="markup--em markup--p-em">relationship</em> los puede encontrar en la carpeta <em class="markup--em markup--p-em">plugins/relationships</em>. Ahora, el siguiente paso es declarar e implementar nuestro relationship; para ello, en la carpeta antes mencionada creamos un archivo al que vamos a llamarle en este ejemplo <em class="markup--em markup--p-em">demo_context_from_node.inc</em> y que contiene el siguiente código:</p><pre name="7988" id="7988" class="graf graf--pre graf-after--p">&lt;?php<br><br>/**<br> * @file<br> * Plugin to provide an relationship handler for node to demo_context.<br> */<br><br>/**<br> * Describimos nuestro plugin con un array $plugin.<br> */<br>$plugin = array(<br>  &#39;title&#39; =&gt; t(&#39;Demo Context&#39;),<br>  &#39;description&#39; =&gt; t(&#39;Expose demo_context as context from node value.&#39;),<br>  &#39;keyword&#39; =&gt; &#39;demo_context&#39;,<br>  &#39;context&#39; =&gt; &#39;demo_context_from_node_context&#39;,<br>  &#39;edit form&#39; =&gt; &#39;demo_context_from_node_settings_form&#39;,<br>  &#39;required context&#39; =&gt; new ctools_context_required(t(&#39;Node&#39;), &#39;node&#39;),<br>);<br><br>/**<br> * Return a new context based on an existing context.<br> */<br>function demo_context_from_node_context($context, $conf) {<br>  // If data está vacío es porque queremos un contexto vacío.<br>  if (empty($context-&gt;data)) {<br>    return ctools_context_create_empty(&#39;demo_context&#39;, NULL);<br>  }<br><br>  if (isset($context-&gt;data-&gt;nid)) {<br>    // Aquí la lógica para poblar una variable llamada $context_demo_select.<br>    // Send it to ctools.<br>    return ctools_context_create(&#39;demo_context&#39;, array(&#39;context_demo_select&#39; =&gt; $context_demo_select));<br>  }<br>}<br><br>/**<br> * Empty form on purpose.<br> */<br>function demo_context_from_node_settings_form($form, $form_state) {<br>  $conf = $form_state[&#39;conf&#39;];<br>  return $form;<br>}</pre><p name="e9c0" id="e9c0" class="graf graf--p graf-after--pre">Al igual que con el contexto, describimos el plugin con algunos índices; entre ellos, <em class="markup--em markup--p-em">context</em> nos indica el nombre dela función que va a crear nuestro contexto, <em class="markup--em markup--p-em">edit form</em> lo usamos para declarar la función para editar nuestro contexto (que en este caso será un form vacío) y con <em class="markup--em markup--p-em">required context</em> indicamos que para poder crear un contexto de tipo <em class="markup--em markup--p-em">demo_context</em> necesitamos tener uno de tipo <em class="markup--em markup--p-em">node</em>.</p><p name="d42d" id="d42d" class="graf graf--p graf-after--p">En <em class="markup--em markup--p-em">demo_context_from_node_context</em> verificamos que <em class="markup--em markup--p-em">$context-&gt;data</em> contenga algo; si es así, debemos implementar la lógica para crear las variables necesarias para instanciar nuestro contexto <em class="markup--em markup--p-em">demo_context</em>; sino, simplemente instanciamos el mismo contexto, pero vacío.</p><p name="b03a" id="b03a" class="graf graf--p graf-after--p">Como se puede ver; una relación es muy fácil; pero la documentación que hay en la red para crearla es escasa; por ello, espero que este post pueda ser útil.</p><p name="5b02" id="5b02" class="graf graf--p graf-after--p graf--last">En la siguiente entrada hablaremos de la creación de un content type que utilice el contexto creado en la entrada anterior; ya sea configurado normalmente o provisto a través de esta relación.</p></div></div></section><section name="80f8" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="51b4" id="51b4" class="graf graf--p graf--leading"><em class="markup--em markup--p-em">Originally published at </em><a href="http://kporras07.tk/2016/01/15/crear-plugins-de-ctools-2/" data-href="http://kporras07.tk/2016/01/15/crear-plugins-de-ctools-2/" class="markup--anchor markup--p-anchor" target="_blank"><em class="markup--em markup--p-em">kporras07.tk</em></a><em class="markup--em markup--p-em"> on January 15, 2016.</em></p><p name="e41f" id="e41f" class="graf graf--p graf-after--p">Parte 1: <a href="https://medium.com/@kporras07/crear-plugins-de-ctools-context-relationship-content-type-parte-1-3-d282e4f58b28#.o1welygq1" data-href="https://medium.com/@kporras07/crear-plugins-de-ctools-context-relationship-content-type-parte-1-3-d282e4f58b28#.o1welygq1" class="markup--anchor markup--p-anchor" rel="nofollow" target="_blank">https://medium.com/@kporras07/crear-plugins-de-ctools-context-relationship-content-type-parte-1-3-d282e4f58b28#.o1welygq1</a></p><p name="18d2" id="18d2" class="graf graf--p graf-after--p graf--last">Parte 3: <a href="https://medium.com/@kporras07/crear-plugins-de-ctools-context-relationship-content-type-parte-3-3-b54591d5e4dc#.63vjwzikx" data-href="https://medium.com/@kporras07/crear-plugins-de-ctools-context-relationship-content-type-parte-3-3-b54591d5e4dc#.63vjwzikx" class="markup--anchor markup--p-anchor" rel="nofollow" target="_blank">https://medium.com/@kporras07/crear-plugins-de-ctools-context-relationship-content-type-parte-3-3-b54591d5e4dc#.63vjwzikx</a></p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@kporras07" class="p-author h-card">Kevin Porras</a> on <a href="https://medium.com/p/f5da7cc2785f"><time class="dt-published" datetime="2016-01-15T00:00:00.000Z">January 15, 2016</time></a>.</p><p>Exported from <a href="https://medium.com">Medium</a> on January 11, 2017.</p></footer></article>
+
+</body></html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Create content blocks programatically in Drupal 8</title><meta name="description" content="Drupal 8 comes with a concept named content blocks (also referred as custom blocks in the blocks library). These are block types that you…"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Create content blocks programatically in Drupal 8</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Drupal 8 comes with a concept named content blocks (also referred as custom blocks in the blocks library). These are block types that you…
+</section>
+<section data-field="body" class="e-content">
+<section name="9e1f" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="f612" id="f612" class="graf graf--h3 graf--leading graf--title">Create content blocks programatically in Drupal 8</h3><p name="c63c" id="c63c" class="graf graf--p graf-after--h3">Drupal 8 comes with a concept named content blocks (also referred as custom blocks in the blocks library). These are block types that you can adjust to your needs and then create blocks based on those types. Every block is an entity. It&#39;s (almost) very useful if you want to create a block to place it somewhere on your site since you can do it totally through the Drupal interface. However; if you want (and probably you should) to keep everything in code; using this kind of blocks maybe is not the easiest solution. Gratefully; there&#39;s a workaround for this. For our example; let&#39;s create a block of type basic (the one included with standard profile) and place it in a page using page manager + panels. When you do that and export the configuration; you get in a file named like <code class="markup--code markup--p-code">page_manager.page_variant.about_me-panels-variant-0.yml</code> a piece of yml like this:</p><pre name="7605" id="7605" class="graf graf--pre graf-after--p">content:<br> — &#39;block_content:basic:63b2b79d-97b6–482e-bb19-e4df520cde13&#39;</pre><p name="5db4" id="5db4" class="graf graf--p graf-after--pre">and somewhere else in the same file; another piece of code like this:</p><pre name="4f7d" id="4f7d" class="graf graf--pre graf-after--p">variant_settings:<br>  blocks:<br>    5cd2a331-a468–45f6-b0be-c97737a68698:<br>      id: &#39;block_content:63b2b79d-97b6–482e-bb19-e4df520cde13&#39;<br>      label: &#39;About Me Block&#39;<br>      provider: block_content<br>      label_display: &#39;0&#39; <br>      status: true<br>      info: &#39;&#39;<br>      view_mode: full<br>      region: middle<br>      weight: 0<br>      uuid: 5cd2a331-a468–45f6-b0be-c97737a68698<br>      context_mapping: { }</pre><p name="db90" id="db90" class="graf graf--p graf-after--pre">The important pieces here are the block bundle (basic), the block uuid ( 63b2b79d-97b6–482e-bb19-e4df520cde13) and the block id (block_content:basic:63b2b79d-97b6–482e-bb19-e4df520cde13); so; in order to create a block programatically that fits in that space; we should do something like this:</p><pre name="0a43" id="0a43" class="graf graf--pre graf-after--p">// Get entity manager.<br> $block_entity_manager = \Drupal::service(&#39;entity.manager&#39;)-&gt;getStorage(&#39;block_content&#39;);<br> // About Me Block.<br> $block = $block_entity_manager-&gt;create(array(<br> &#39;type&#39; =&gt; &#39;basic&#39;,<br> &#39;id&#39; =&gt; &#39;block_content:basic:63b2b79d-97b6–482e-bb19-e4df520cde13&#39;,<br> &#39;label&#39; =&gt; &#39;About Me Block&#39;,<br> &#39;uuid&#39; =&gt; &#39;63b2b79d-97b6–482e-bb19-e4df520cde13&#39;,<br> )); <br> $block-&gt;info = &#39;About Me Block&#39;;<br> $block-&gt;body-&gt;format = &#39;basic_html&#39;;<br> $block-&gt;body-&gt;value = &#39;Some lorem ipsum text here&#39;;<br> $block-&gt;save();</pre><p name="4496" id="4496" class="graf graf--p graf-after--pre">That piece of code could be added to a hook_install or hook_update_N and the block will be created and automatically placed where it should be according to the exported configuration. Be sure to remove the manually created block before testing this code; otherwise, Drupal will complain for a duplicated id.</p><p name="a13c" id="a13c" class="graf graf--p graf-after--p">With this way to do this; you create the block programatically and ensure it&#39;s there when you enable/update the module and also you could edit it through Drupal interface without overriding nothing in the configuration.</p><p name="4c14" id="4c14" class="graf graf--p graf-after--p graf--last">I hope this to be useful,</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@kporras07" class="p-author h-card">Kevin Porras</a> on <a href="https://medium.com/p/644fef292b84"><time class="dt-published" datetime="2017-01-05T16:06:07.551Z">January 5, 2017</time></a>.</p><p>Exported from <a href="https://medium.com">Medium</a> on January 11, 2017.</p></footer></article>
+
+</body></html>
