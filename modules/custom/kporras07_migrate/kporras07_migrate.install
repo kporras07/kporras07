@@ -76,5 +76,26 @@ function kporras07_migrate_schema() {
     'primary key' => array('id'),
   );
 
+  $schema['kporras07_terms'] = array(
+    'description' => 'Intermediate table for migrating terms',
+    'fields' => array(
+      'name' => array(
+        'description' => 'Name',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'type' => array(
+        'description' => 'type',
+        'type' => 'varchar',
+        'length' => 15,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('name', 'type'),
+  );
+
   return $schema;
 }

@@ -6,8 +6,17 @@ source:
 process:
   title: title
   body/value: body
-  field_category: categories
-  field_tags: tags
+  body/format:
+    plugin: default_value
+    default_value: full_html
+  field_category:
+    plugin: migration
+    migration: categories
+    source: category
+  field_tags:
+    plugin: migration
+    migration: tags
+    source: tag
   field_blog_type: type
   created: date
   changed: date
@@ -25,3 +34,6 @@ process:
     default_value: 0
 destination:
   plugin: entity:node
+dependencies:
+  enforced:
+    - kporras07_terms

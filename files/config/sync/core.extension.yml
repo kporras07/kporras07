@@ -28,7 +28,7 @@ module:
   history: 0
   image: 0
   kporras07_blocks: 0
-  kporras07_migrate: 0
+  kporras07_migrate: 10
   layout_plugin: 0
   libraries: 0
   link: 0

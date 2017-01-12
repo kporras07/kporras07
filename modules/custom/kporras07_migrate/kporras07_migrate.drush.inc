@@ -79,7 +79,19 @@ function kporras07_migrate_process_html($type) {
     $html5qp = html5qp($permalink);
     $tags = array();
     foreach ($html5qp->find('.tags--postTags a') as $tag) {
-      $tags[] = $tag->innerHtml();
+      if (trim($tag->innerHtml())) {
+        $tags[] = $tag->innerHtml();
+        \Drupal::database()->merge('kporras07_terms')
+          ->key(array(
+            'name' => trim(ucwords($tag->innerHTML())),
+            'type' => 'tags',
+          ))
+          ->fields(array(
+            'type' => 'tags',
+            'name' => trim(ucwords($tag->innerHTML())),
+          ))
+          ->execute();
+      }
     }
     $tags = implode(',', $tags);
 
@@ -99,6 +111,7 @@ function kporras07_migrate_process_html($type) {
       ->key(array('id' => $record['id']))
       ->fields($record)
       ->execute();
+
 
   }
 }
@@ -152,11 +165,23 @@ function kporras07_migrate_process_md($type) {
     $title = $matches[1];
 
     // Categories.
-    preg_match('/^categories:\s*([A-Za-z0-9\s\-áéíóú!?]*)$/m', $meta, $matches);
+    preg_match('/^categories|category:\s*([A-Za-z0-9\s\-áéíóú!?]*)$/m', $meta, $matches);
     $categories = $matches[1];
     $categories = explode(' ', $categories);
     foreach ($categories as &$category) {
-      $category = ucwords($category);
+      if (trim($category)) {
+        $category = ucwords($category);
+        \Drupal::database()->merge('kporras07_terms')
+          ->key(array(
+            'name' => trim($category),
+            'type' => 'category',
+          ))
+          ->fields(array(
+            'type' => 'category',
+            'name' => trim($category),
+          ))
+          ->execute();
+      }
     }
     $categories = implode(',', $categories);
 
@@ -168,8 +193,20 @@ function kporras07_migrate_process_md($type) {
       if ($tag === '---') {
         unset($tags[$index]);
       }
-      $tag = str_replace('-', ' ', $tag);
-      $tag = ucwords($tag);
+      if (trim($tag)) {
+        $tag = str_replace('-', ' ', $tag);
+        $tag = ucwords($tag);
+        \Drupal::database()->merge('kporras07_terms')
+          ->key(array(
+            'name' => trim($tag),
+            'type' => 'tags',
+          ))
+          ->fields(array(
+            'type' => 'tags',
+            'name' => trim($tag),
+          ))
+          ->execute();
+      }
     }
     $tags = implode(',', $tags);
 

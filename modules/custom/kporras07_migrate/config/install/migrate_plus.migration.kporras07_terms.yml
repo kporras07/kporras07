@@ -1,0 +1,10 @@
+id: kporras07_terms
+label: Terms
+migration_group: kporras07
+source:
+  plugin: kporras07_terms
+process:
+  name: name
+  vid: type
+destination:
+  plugin: entity:taxonomy_term
