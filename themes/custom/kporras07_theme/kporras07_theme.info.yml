@@ -1,0 +1,22 @@
+name: Kporras07 Theme
+type: theme
+description: Theme for kporras07
+core: 8.x
+base theme: writer
+libraries:
+  - kporras07_theme/global-assets
+regions:
+  pre_header: 'Pre-Header'
+  main_menu: 'Main Menu'
+  header: Header
+  post_header: 'Post-Header'
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  sidebar: Sidebar
+  footer_top: 'Footer Top'
+  footer_left: 'Footer Left'
+  footer_right: 'Footer Right'
+  footer_bottom: 'Footer Bottom'
+  footer_message: 'Footer Message'
+  footer_menu: 'Footer Menu'

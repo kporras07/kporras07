@@ -1,0 +1,40 @@
+/**
+ * @file
+ * Basic layout css for kporras07 theme.
+ */
+
+.sidebar .views-row {
+  display: block;
+  clear: both;
+}
+
+@media (min-width: 800px) {
+  #wrapper {
+    padding-left: 0px !important;
+    max-width: 800px !important;
+  }
+
+  .main {
+    display: flex;
+  }
+
+  .main-content {
+    order: 2;
+    width: 70%;
+  }
+
+  .main .sidebar {
+    order: 1;
+    width: 30%;
+    margin-right: 25px;
+    word-wrap: break-word;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  .sidebar .field--name-field-tags {
+    height: 100px;
+  }
+}

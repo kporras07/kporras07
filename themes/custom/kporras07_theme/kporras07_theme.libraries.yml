@@ -1,0 +1,4 @@
+global-assets:
+  css:
+    theme:
+      css/style.css: {}
