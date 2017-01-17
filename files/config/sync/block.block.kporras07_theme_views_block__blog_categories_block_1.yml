@@ -1,0 +1,30 @@
+uuid: 4c75f092-0319-44da-80d2-38e4707b1372
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.blog_categories
+  module:
+    - system
+    - views
+  theme:
+    - kporras07_theme
+id: kporras07_theme_views_block__blog_categories_block_1
+theme: kporras07_theme
+region: sidebar
+weight: -6
+provider: null
+plugin: 'views_block:blog_categories-block_1'
+settings:
+  id: 'views_block:blog_categories-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /blog
+    negate: false
+    context_mapping: {  }

@@ -1,6 +1,11 @@
+uuid: c9918a50-3aa5-4cb1-9466-20284e6f097d
+langcode: en
+status: true
+dependencies: {  }
 id: kporras07_tags
-label: Tags
+migration_tags: null
 migration_group: kporras07
+label: Tags
 source:
   plugin: kporras07_tags
 process:
@@ -9,4 +14,5 @@ process:
     plugin: default_value
     default_value: tags
 destination:
-  plugin: entity:taxonomy_term
+  plugin: 'entity:taxonomy_term'
+migration_dependencies: null

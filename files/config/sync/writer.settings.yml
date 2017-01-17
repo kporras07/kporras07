@@ -1,0 +1,12 @@
+features:
+  logo: false
+  name: true
+  slogan: false
+  favicon: true
+  node_user_picture: false
+  comment_user_picture: false
+  comment_user_verification: false
+code_snippets: simple
+content_width: '630'
+_core:
+  default_config_hash: cr0vcrCvlUcC98Qrk1y4BcETUHZpQFM35oRmhvz4VJ4

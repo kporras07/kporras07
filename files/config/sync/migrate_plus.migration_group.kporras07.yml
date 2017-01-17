@@ -1,7 +1,12 @@
+uuid: 5700a6f4-2e9d-4ed6-878c-757e616cd4c6
+langcode: en
+status: true
+dependencies: {  }
 id: kporras07
 label: Kporras07
-description: Migrate posts.
-source_type: Intermediate table generated from posts files.
+description: 'Migrate posts.'
+source_type: 'Intermediate table generated from posts files.'
+module: null
 shared_configuration:
   source:
     key: default

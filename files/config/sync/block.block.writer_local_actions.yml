@@ -1,0 +1,20 @@
+uuid: 62b234eb-e16c-4bec-a65d-18c58ea9f883
+langcode: en
+status: true
+dependencies:
+  theme:
+    - writer
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: writer_local_actions
+theme: writer
+region: content
+weight: -8
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

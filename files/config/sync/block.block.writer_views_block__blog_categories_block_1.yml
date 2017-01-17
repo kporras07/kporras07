@@ -1,0 +1,30 @@
+uuid: 298f657a-b52f-4792-81b9-021414b90ea2
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.blog_categories
+  module:
+    - system
+    - views
+  theme:
+    - writer
+id: writer_views_block__blog_categories_block_1
+theme: writer
+region: pre_header
+weight: 0
+provider: null
+plugin: 'views_block:blog_categories-block_1'
+settings:
+  id: 'views_block:blog_categories-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /blog
+    negate: false
+    context_mapping: {  }

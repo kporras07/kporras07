@@ -1,6 +1,11 @@
+uuid: 96f8c64e-47b2-414f-8858-9c58ca511e4e
+langcode: en
+status: true
+dependencies: {  }
 id: posts
-label: Posts
+migration_tags: null
 migration_group: kporras07
+label: Posts
 source:
   plugin: posts
 process:
@@ -33,7 +38,7 @@ process:
     plugin: default_value
     default_value: 0
 destination:
-  plugin: entity:node
+  plugin: 'entity:node'
 migration_dependencies:
   required:
     - kporras07_categories

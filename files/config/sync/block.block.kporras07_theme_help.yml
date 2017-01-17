@@ -1,0 +1,22 @@
+uuid: c764f27d-16e4-4585-ad05-3d76da779dfa
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - kporras07_theme
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: kporras07_theme_help
+theme: kporras07_theme
+region: content
+weight: -8
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }
