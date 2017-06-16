@@ -28,7 +28,7 @@ variant_settings:
   uuid: bfa866b2-00f7-4c61-931f-69a2021761e1
   label: null
   weight: 0
-  layout: onecol
+  layout: layout_onecol
   layout_settings: {  }
   page_title: Projects
   storage_type: page_manager

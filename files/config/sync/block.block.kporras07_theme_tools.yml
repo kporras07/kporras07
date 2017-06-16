@@ -12,7 +12,7 @@ _core:
   default_config_hash: NeHSoqm4XFqA7_0bDmR429ZZQt3LRbZMNRJTMsFyOfI
 id: kporras07_theme_tools
 theme: kporras07_theme
-region: '-1'
+region: pre_header
 weight: -4
 provider: null
 plugin: 'system_menu_block:tools'

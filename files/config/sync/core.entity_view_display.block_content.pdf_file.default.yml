@@ -20,6 +20,7 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_pdf:
     weight: 1
     label: hidden
@@ -29,4 +30,5 @@ content:
       height: 1250px
     third_party_settings: {  }
     type: pdf_default
+    region: content
 hidden: {  }
