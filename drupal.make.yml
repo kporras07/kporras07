@@ -33,9 +33,9 @@ projects:
       branch: 8.x-3.x
       revision: "5e7ea584db3e5d9aa5acac130bda1359ad048f5c"
   migrate_plus:
-    version: 3.0-rc1
+    version: 4.0-beta1
   migrate_tools:
-    version: 3.0-rc1
+    version: 4.0-beta1
   page_manager:
     version: 4.0-beta2
   panels:
