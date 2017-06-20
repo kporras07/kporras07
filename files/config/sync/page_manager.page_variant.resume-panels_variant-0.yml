@@ -22,7 +22,7 @@ variant_settings:
       status: true
       info: ''
       view_mode: full
-      region: middle
+      region: content
       weight: 0
       uuid: e0ffb144-80a6-405f-8eb3-2e0f8c845b70
       context_mapping: {  }

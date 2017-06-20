@@ -26,7 +26,7 @@ variant_settings:
           image_link: ''
         third_party_settings: {  }
         weight: 0
-      region: middle
+      region: content
       weight: -1
       uuid: e84dd5c2-ad49-43e6-8e5e-1ec514aae7cb
       context_mapping:
@@ -42,7 +42,7 @@ variant_settings:
         settings: {  }
         third_party_settings: {  }
         weight: 0
-      region: middle
+      region: content
       weight: 0
       uuid: 60d91f74-a0cf-4420-aa6f-a26786fba1ce
       context_mapping:
@@ -59,7 +59,7 @@ variant_settings:
           link: true
         third_party_settings: {  }
         weight: 0
-      region: middle
+      region: content
       weight: 1
       uuid: a3a4ddbf-1d16-412a-a63c-4618a8d76744
       context_mapping:
