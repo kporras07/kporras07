@@ -16,6 +16,9 @@ dependencies:
   - link
   - file
   - field
+  - migrate
+  - migrate_plus
+  - migrate_tools
 themes:
   - bartik
   - seven

@@ -26,7 +26,7 @@ variant_settings:
           image_link: ''
         third_party_settings: {  }
         weight: 0
-      region: middle
+      region: content
       weight: -1
       uuid: e84dd5c2-ad49-43e6-8e5e-1ec514aae7cb
       context_mapping:
@@ -42,7 +42,7 @@ variant_settings:
         settings: {  }
         third_party_settings: {  }
         weight: 0
-      region: middle
+      region: content
       weight: 0
       uuid: 60d91f74-a0cf-4420-aa6f-a26786fba1ce
       context_mapping:
@@ -59,7 +59,7 @@ variant_settings:
           link: true
         third_party_settings: {  }
         weight: 0
-      region: middle
+      region: content
       weight: 1
       uuid: a3a4ddbf-1d16-412a-a63c-4618a8d76744
       context_mapping:
@@ -68,7 +68,7 @@ variant_settings:
   uuid: e27be86d-0fe4-415e-9359-7082f61a83b2
   label: null
   weight: 0
-  layout: onecol
+  layout: layout_onecol
   layout_settings: {  }
   page_title: '[node:title]'
   storage_type: page_manager

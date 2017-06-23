@@ -22,7 +22,7 @@ variant_settings:
       status: true
       info: ''
       view_mode: full
-      region: middle
+      region: content
       weight: 0
       uuid: e0ffb144-80a6-405f-8eb3-2e0f8c845b70
       context_mapping: {  }
@@ -30,7 +30,7 @@ variant_settings:
   uuid: c1c3f111-4642-4844-a2da-5cef9578d3a4
   label: null
   weight: 0
-  layout: onecol
+  layout: layout_onecol
   layout_settings: {  }
   page_title: Resume
   storage_type: page_manager

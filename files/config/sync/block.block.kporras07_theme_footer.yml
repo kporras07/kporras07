@@ -12,7 +12,7 @@ _core:
   default_config_hash: kkISXE1LT2FJEoYnqCrCpeFB-2pmGmMxMklVk7rQcfg
 id: kporras07_theme_footer
 theme: kporras07_theme
-region: '-1'
+region: pre_header
 weight: -6
 provider: null
 plugin: 'system_menu_block:footer'

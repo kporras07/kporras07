@@ -1,4 +1,4 @@
-uuid: 9d61ea4b-eb67-4026-8326-0e497a3a7bca
+uuid: 44712ebb-7d0d-4400-9dc6-72ce2f2fcf02
 langcode: en
 status: true
 dependencies:
@@ -15,19 +15,7 @@ label: Panels
 variant: panels_variant
 variant_settings:
   blocks:
-    7e6b3401-b94a-44f8-ab20-4d069c74d12b:
-      id: 'block_content:c58db9a3-c60d-4399-a3a1-031e501ddf46'
-      label: 'Contact Me Block'
-      provider: block_content
-      label_display: '0'
-      status: true
-      info: ''
-      view_mode: full
-      region: middle
-      weight: 0
-      uuid: 7e6b3401-b94a-44f8-ab20-4d069c74d12b
-      context_mapping: {  }
-    5cd2a331-a468-45f6-b0be-c97737a68698:
+    42ffc868-7a11-41a4-b9dd-c702ad192300:
       id: 'block_content:63b2b79d-97b6-482e-bb19-e4df520cde13'
       label: 'About Me Block'
       provider: block_content
@@ -35,17 +23,29 @@ variant_settings:
       status: true
       info: ''
       view_mode: full
-      region: middle
+      region: content
       weight: 0
-      uuid: 5cd2a331-a468-45f6-b0be-c97737a68698
+      uuid: 42ffc868-7a11-41a4-b9dd-c702ad192300
+      context_mapping: {  }
+    fe7d63d2-c987-476e-b0ff-f22b6cc0b649:
+      id: 'block_content:c58db9a3-c60d-4399-a3a1-031e501ddf46'
+      label: 'Contact Block'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: content
+      weight: 0
+      uuid: fe7d63d2-c987-476e-b0ff-f22b6cc0b649
       context_mapping: {  }
   id: panels_variant
-  uuid: e2d21091-a2f3-4091-ad70-57aeaf3f841f
+  uuid: 694c7529-82c9-4b44-84a4-8b3098da0707
   label: null
   weight: 0
-  layout: onecol
+  layout: layout_onecol
   layout_settings: {  }
-  page_title: About
+  page_title: ''
   storage_type: page_manager
   storage_id: about_me-panels_variant-0
   builder: standard

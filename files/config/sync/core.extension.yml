@@ -29,7 +29,7 @@ module:
   history: 0
   image: 0
   kporras07_blocks: 0
-  layout_plugin: 0
+  layout_discovery: 0
   libraries: 0
   link: 0
   menu_ui: 0
@@ -71,3 +71,4 @@ theme:
   kporras07_theme: 0
 _core:
   default_config_hash: m2GVq11UAOVuNgj8x0t5fMOPujpvQQ_zxLoaly1BMEU
+profile: kporras07

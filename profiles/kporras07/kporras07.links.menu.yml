@@ -1,16 +1,16 @@
 kporras07.about_me:
   title: 'About'
-  route_name: 'page_manager.page_view_about_me'
+  route_name: 'page_manager.page_view_about_me_about_me-panels_variant-0'
   menu_name: main
 kporras07.blog:
   title: 'Blog'
-  route_name: 'page_manager.page_view_blog'
+  route_name: 'page_manager.page_view_blog_blog-panels_variant-0'
   menu_name: main
 kporras07.projects:
   title: 'Projects'
-  route_name: 'page_manager.page_view_projects'
+  route_name: 'page_manager.page_view_projects_projects-panels_variant-0'
   menu_name: main
 kporras07.resume:
   title: 'Resume'
-  route_name: 'page_manager.page_view_resume'
+  route_name: 'page_manager.page_view_resume_resume-panels_variant-0'
   menu_name: main
